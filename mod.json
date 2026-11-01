@@ -1,0 +1,8 @@
+{
+  "id": "sp-lite",
+  "name": "spDJ",
+  "version": "1.0.0",
+  "gameVersion": "0.3.3",
+  "license": "GPL-3.0-or-later",
+  "entry": "public/sp-lite/fab-seed.js"
+}
