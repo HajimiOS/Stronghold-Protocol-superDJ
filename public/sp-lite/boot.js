@@ -453,6 +453,12 @@ function injectStyle() {
 #${ROOT_ID} .sp-file{ position:relative; overflow:hidden; display:inline-flex; align-items:center; justify-content:center; }
 #${ROOT_ID} .sp-file input[type=file]{ position:absolute; inset:0; opacity:0; cursor:pointer; font-size:0; }
 #${ROOT_ID} .sp-upload-acts{ display:flex; gap:4px; flex:none; align-items:center; }
+#${ROOT_ID} .sp-btn--danger{
+  color:#e88; border-color:rgba(232,136,136,.35);
+}
+#${ROOT_ID} .sp-btn--danger:hover{
+  color:#fcc; border-color:rgba(232,136,136,.55); background:rgba(232,136,136,.08);
+}
 #${ROOT_ID} .sp-list-meta{
   display:flex; align-items:center; justify-content:space-between; gap:6px;
   margin:0 0 6px; flex:none; min-height:22px; flex-wrap:wrap;
@@ -672,7 +678,7 @@ const I18N = {
     idle: '未播放', hostPlaying: '卫戍音乐播放中', pick: '点 ≡ 选曲', uploadFirst: '先上传曲子',
     playlist: '播放列表', upload: '上传', uploadFolder: '文件夹', search: '查找曲名', empty: '还没有曲子', noMatch: '无匹配',
     tracksN: '共 {n} 首', sortName: '名称', sortBpm: 'BPM', analyzeBpm: '分析 BPM',
-    del: '删除', close: '关闭', customBgm: 'DJ', rave: '锐舞', zap: '放电', smartCue: 'mix',
+    del: '删除', delAll: '清空', delAllAsk: '清空全部曲子？', close: '关闭', customBgm: 'DJ', rave: '锐舞', zap: '放电', smartCue: 'mix',
     skin: '皮肤', skinAmiya: '阿米娅', skinMmk: 'mmk', copy: '复制曲名', help: '说明', helpTitle: '使用说明',
     playNow: '现在播放', playNext: '下一首播放',
     playPause: '播放/暂停', next: '下一首',
@@ -683,7 +689,7 @@ const I18N = {
     idle: 'Idle', hostPlaying: 'Host BGM', pick: 'Tap ≡ to pick', uploadFirst: 'Upload a track',
     playlist: 'Playlist', upload: 'Upload', uploadFolder: 'Folder', search: 'Search', empty: 'No tracks yet', noMatch: 'No matches',
     tracksN: '{n} tracks', sortName: 'Name', sortBpm: 'BPM', analyzeBpm: 'Analyze BPM',
-    del: 'Delete', close: 'Close', customBgm: 'DJ', rave: 'Rave', zap: 'Zap', smartCue: 'mix',
+    del: 'Delete', delAll: 'Clear', delAllAsk: 'Clear all tracks?', close: 'Close', customBgm: 'DJ', rave: 'Rave', zap: 'Zap', smartCue: 'mix',
     skin: 'Skin', skinAmiya: 'Amiya', skinMmk: 'mmk', copy: 'Copy title', help: 'Help', helpTitle: 'Guide',
     playNow: 'Play now', playNext: 'Play next',
     playPause: 'Play / Pause', next: 'Next',
@@ -694,7 +700,7 @@ const I18N = {
     idle: '停止中', hostPlaying: '本体BGM再生中', pick: '≡ で選曲', uploadFirst: '曲を追加',
     playlist: 'プレイリスト', upload: '追加', uploadFolder: 'フォルダ', search: '曲名検索', empty: '曲がありません', noMatch: '一致なし',
     tracksN: '{n} 曲', sortName: '名前', sortBpm: 'BPM', analyzeBpm: 'BPM解析',
-    del: '削除', close: '閉じる', customBgm: 'DJ', rave: 'レイヴ', zap: '放電', smartCue: 'mix',
+    del: '削除', delAll: '全削除', delAllAsk: '曲をすべて削除しますか？', close: '閉じる', customBgm: 'DJ', rave: 'レイヴ', zap: '放電', smartCue: 'mix',
     skin: 'スキン', skinAmiya: 'アーミヤ', skinMmk: 'mmk', copy: '曲名をコピー', help: '説明', helpTitle: '使い方',
     playNow: '今すぐ再生', playNext: '次に再生',
     playPause: '再生/一時停止', next: '次へ',
@@ -705,7 +711,7 @@ const I18N = {
     idle: '대기', hostPlaying: '기본 BGM 재생 중', pick: '≡ 로 선택', uploadFirst: '곡을 업로드',
     playlist: '재생 목록', upload: '업로드', uploadFolder: '폴더', search: '곡 검색', empty: '곡이 없습니다', noMatch: '결과 없음',
     tracksN: '{n}곡', sortName: '이름', sortBpm: 'BPM', analyzeBpm: 'BPM 분석',
-    del: '삭제', close: '닫기', customBgm: 'DJ', rave: '레이브', zap: '방전', smartCue: 'mix',
+    del: '삭제', delAll: '전체삭제', delAllAsk: '모든 곡을 삭제할까요?', close: '닫기', customBgm: 'DJ', rave: '레이브', zap: '방전', smartCue: 'mix',
     skin: '스킨', skinAmiya: '아미야', skinMmk: 'mmk', copy: '곡명 복사', help: '안내', helpTitle: '사용 안내',
     playNow: '지금 재생', playNext: '다음에 재생',
     playPause: '재생/일시정지', next: '다음',
@@ -716,7 +722,7 @@ const I18N = {
     idle: '未播放', hostPlaying: '衛戍音樂播放中', pick: '點 ≡ 選曲', uploadFirst: '先上傳曲子',
     playlist: '播放列表', upload: '上傳', uploadFolder: '資料夾', search: '查找曲名', empty: '還沒有曲子', noMatch: '無匹配',
     tracksN: '共 {n} 首', sortName: '名稱', sortBpm: 'BPM', analyzeBpm: '分析 BPM',
-    del: '刪除', close: '關閉', customBgm: 'DJ', rave: '銳舞', zap: '放電', smartCue: 'mix',
+    del: '刪除', delAll: '清空', delAllAsk: '清空全部曲子？', close: '關閉', customBgm: 'DJ', rave: '銳舞', zap: '放電', smartCue: 'mix',
     skin: '皮膚', skinAmiya: '阿米婭', skinMmk: 'mmk', copy: '複製曲名', help: '說明', helpTitle: '使用說明',
     playNow: '現在播放', playNext: '下一首播放',
     playPause: '播放/暫停', next: '下一首',
@@ -1389,7 +1395,6 @@ function createUi(anim, music) {
     btnNext.classList.toggle('hidden', !on);
     btnMode.classList.toggle('hidden', !on);
     progBlock.classList.toggle('hidden', !on);
-    playBody.classList.toggle('hidden', !on);
     if (!on) {
       btnPlay.disabled = false;
       btnNext.disabled = false;
@@ -1585,6 +1590,7 @@ function createUi(anim, music) {
     chkRave.checked = !!anim.get().on;
     chkZap.checked = loadZap();
     paintSkinChecks();
+    playBody.classList.toggle('hidden', !s.on);
     btnList.classList.toggle('hidden', !s.on);
     if (!s.on) openList = false;
     setTransportVisible(!!s.on && active);
@@ -2055,11 +2061,25 @@ function createUi(anim, music) {
     });
     try { folderInput.setAttribute('webkitdirectory', ''); } catch {}
     try { folderInput.setAttribute('directory', ''); } catch {}
+    const btnDelAll = el('button', {
+      class: 'sp-btn sp-btn--danger', type: 'button', text: t('delAll'), title: t('delAll'),
+      onClick: (e) => {
+        e.stopPropagation();
+        const n = (music.snapshot().library || []).length;
+        if (!n) return;
+        if (!window.confirm(t('delAllAsk'))) return;
+        music.clearTracks();
+        listMenuId = null;
+        refreshList();
+        paintAll();
+      },
+    });
     sheetList.appendChild(el('div', { class: 'sp-sheet__hd' }, [
       el('h4', { class: 'sp-sheet__t', text: t('playlist') }),
       el('div', { class: 'sp-upload-acts' }, [
         el('label', { class: 'sp-btn sp-btn--main sp-file', title: t('upload') }, [fileInput, t('upload')]),
         el('label', { class: 'sp-btn sp-file', title: t('uploadFolder') }, [folderInput, t('uploadFolder')]),
+        btnDelAll,
       ]),
     ]));
     listSearchEl = el('input', {

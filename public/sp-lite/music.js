@@ -2407,6 +2407,24 @@ export async function createMusic() {
       emit();
       emitTick();
     },
+    clearTracks() {
+      const list = clips.list();
+      if (!list.length) return 0;
+      for (const t of list) {
+        clips.remove(t.id);
+        cacheDrop(t.id);
+      }
+      playNextId = null;
+      liveId = null;
+      bpmById.clear();
+      bpmExactIds.clear();
+      bufCache.clear();
+      stopCustom();
+      if (!cfg.on) host.setMuted(false);
+      emit();
+      emitTick();
+      return list.length;
+    },
     queueNext(id) {
       if (!id || !clips.has(id) || id === liveId) return false;
       if (cfg.mode === 'shuffle') {
