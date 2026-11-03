@@ -6,10 +6,11 @@
 
 只需服主安装。玩家打开原来的地址即可，电脑和手机不用另装软件。
 
-解压游戏后的文件夹叫 `Stronghold-Protocol`。模块文件放在：
+解压游戏后的文件夹叫 `Stronghold-Protocol`。安装后模块落到：
 
 ```
-Stronghold-Protocol/public/sp-lite/
+Stronghold-Protocol/plugins/spdj/
+Stronghold-Protocol/public/sp-plugins/spdj/
 ```
 
 安装程序还会改这一个文件：
@@ -18,21 +19,23 @@ Stronghold-Protocol/public/sp-lite/
 Stronghold-Protocol/public/index.html
 ```
 
+因需挂宿主页面悬浮球，不能只靠官方「界面插件」沙箱单独启用；脚本仍由服主注入。首次打开会默认在「设置 → 界面插件」里打开 `spDJ`，之后可手动关闭。
+
 ### Windows
 
 1. 关闭游戏服务。
-2. 把本文件夹放到 `Stronghold-Protocol/spDJ/`，双击 `Stronghold-Protocol/spDJ/windows/install.bat`。
+2. 把本文件夹放到任意位置，双击 `windows/install.bat`，按提示选择游戏目录。
 3. 重新启动游戏，并刷新浏览器。
 
-更新本模块时再双击一次这个 bat。更新游戏前先双击 `Stronghold-Protocol/spDJ/windows/uninstall.bat`，更新完成后再安装。
+更新本模块时再双击一次这个 bat。更新游戏前先双击 `windows/uninstall.bat`，更新完成后再安装。
 
 ### Linux
 
 1. 关闭游戏服务。
-2. 把本文件夹放到 `Stronghold-Protocol/spDJ/`，然后执行：
+2. 执行（把路径换成实际游戏目录）：
 
 ```sh
-sh Stronghold-Protocol/spDJ/linux/install.sh Stronghold-Protocol
+sh linux/install.sh /path/to/Stronghold-Protocol
 ```
 
 3. 重新启动游戏服务，并刷新浏览器。
@@ -40,30 +43,44 @@ sh Stronghold-Protocol/spDJ/linux/install.sh Stronghold-Protocol
 更新本模块时再执行一次上面的命令。更新游戏前先执行：
 
 ```sh
-sh Stronghold-Protocol/spDJ/linux/uninstall.sh Stronghold-Protocol
+sh linux/uninstall.sh /path/to/Stronghold-Protocol
 ```
 
-不能放进游戏的插件工作台。
+不能放进游戏的插件工作台来替代上述安装。
 
 ## 目录
 
 ```
-public/sp-lite/   模块脚本与皮肤资源
-mod.json
+plugin.json          官方插件清单（占位 frame）
+fab-seed.js          宿主入口
+boot.js music.js anim.js assets/
+frame/               界面插件占位页
 README.md
 LICENSE
 NOTICE.md
-windows/          Windows 安装与卸载
-linux/            Linux 安装与卸载
+windows/             Windows 安装与卸载
+linux/               Linux 安装与卸载
 ```
 
 ## 功能
 
 - 悬浮球打开迷你 DJ 面板，可替换原 BGM
 - 本地上传单曲 / 文件夹，列表循环 / 单曲 / 随机
-- BPM 粗估与精确分析，可选 mix 智能接曲
+- 面板开关 **mix**（智能接曲），默认开启；关闭后按普通切歌，不做 cue / 对齐混音
 - 放电 / 锐舞动效，阿米娅 / mmk 皮肤
 - 手机与桌面浏览器可用
+- 跟随游戏语言切换（读 `sp.pref.lang`）
+
+### 智能 mix
+
+打开 **mix** 后，切歌像 DJ 台接曲，不再硬切：
+
+- 自动找进曲 / 出曲点
+- 底鼓、小节对齐，不抢拍
+- 同速叠几十拍混过去，鼓组错开进出
+- 交完回到本曲正常速度
+
+关 mix 即为普通切歌。分析只在本机浏览器完成。
 
 ## 兼容
 

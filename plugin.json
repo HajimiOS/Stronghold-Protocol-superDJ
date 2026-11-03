@@ -1,0 +1,18 @@
+{
+  "manifest": 2,
+  "name": { "zh": "spDJ", "en": "spDJ" },
+  "description": {
+    "zh": "服主安装的网页 DJ。需宿主页面注入，不能用官方界面插件沙箱单独启用。",
+    "en": "Server-owner web DJ. Needs host-page inject; not a sandboxed UI plugin."
+  },
+  "version": "1.1.0",
+  "app": ">=0.3.3 <0.4.0",
+  "api": 1,
+  "class": "ui",
+  "scope": ["personal"],
+  "authors": ["HajimiOS"],
+  "license": "GPL-3.0-or-later",
+  "permissions": ["ui.frame"],
+  "entry": { "client": "frame/index.html" },
+  "slots": ["hud.right"]
+}
