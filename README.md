@@ -1,4 +1,4 @@
-# spDJ
+# SpDJ
 
 为[卫戍协议](https://github.com/sganggs/Stronghold-Protocol) 0.3.3 提供网页端自定义 BGM / DJ 播放器。非官方同人模块。
 
@@ -19,7 +19,7 @@ Stronghold-Protocol/public/sp-plugins/spdj/
 Stronghold-Protocol/public/index.html
 ```
 
-因需挂宿主页面悬浮球，不能只靠官方「界面插件」沙箱单独启用；脚本仍由服主注入。首次打开会默认在「设置 → 界面插件」里打开 `spDJ`，之后可手动关闭。
+因需挂宿主页面悬浮球，不能只靠官方「界面插件」沙箱单独启用；脚本仍由服主注入。首次打开会默认在「设置 → 界面插件」里打开 `SpDJ`，之后可手动关闭。
 
 ### Windows
 

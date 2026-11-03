@@ -1,4 +1,4 @@
-spDJ
+SpDJ
 
 本仓库是给卫戍协议（Stronghold Protocol）0.3.3 使用的网页 DJ / 自定义 BGM 模块。
 原项目：https://github.com/sganggs/Stronghold-Protocol
